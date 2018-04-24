@@ -14,5 +14,9 @@ public class bulletCtrl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         transform.Translate(Vector3.right * BulletSpeed * Time.deltaTime);
+        if(this.transform.position.x>10)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

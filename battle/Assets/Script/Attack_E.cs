@@ -5,16 +5,18 @@ using UnityEngine;
 public class Attack_E : MonoBehaviour
 {
     public GameObject Enemy;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
+    EnemyStatus enemystatus;
+    
+    // Use this for initialization
+    void Start () {
+       enemystatus = GameObject.Find("enemy(Clone)").GetComponent<EnemyStatus>();
+    }
 	
+
 	// Update is called once per frame
 	void Update () {
-		
-	}
+
+    }
 
     private void OnTriggerEnter(UnityEngine.Collider other)
     {
@@ -24,6 +26,7 @@ public class Attack_E : MonoBehaviour
             Enemy.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
             Enemy.GetComponent<Rigidbody>().AddForce(7,5f, 0,ForceMode.VelocityChange);
             Enemy.GetComponent<MeshRenderer>().material.color = Color.red;
+            enemystatus.enemyhpdown();
         }
 
         if (other.gameObject.tag == "P1")
@@ -46,6 +49,7 @@ public class Attack_E : MonoBehaviour
             Enemy.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
             Enemy.GetComponent<Rigidbody>().AddForce(7, 5f, 0, ForceMode.VelocityChange);
             Enemy.GetComponent<MeshRenderer>().material.color = Color.red;
+            enemystatus.enemyhpdown();
             Destroy(other.gameObject);
 
         }
